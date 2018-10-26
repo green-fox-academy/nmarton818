@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2018.2.5\bin\cmake\win\bin\cmake.exe" -E remove -f CMakeFiles\day_02.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\day_02.dir/objects.a @CMakeFiles\day_02.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\day_02.dir/objects.a -Wl,--no-whole-archive  -o day_02.exe -Wl,--out-implib,libday_02.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\day_02.dir\linklibs.rsp
