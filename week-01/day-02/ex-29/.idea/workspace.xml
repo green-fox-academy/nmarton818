@@ -11,13 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d09febd-63fc-43e9-8e6a-c00d9263ba28" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../ex-21/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex-21/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ex-18/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ex-18/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ex-18/cmake-build-debug/CMakeFiles/ex_18.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/../ex-18/cmake-build-debug/CMakeFiles/ex_18.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ex-18/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ex-18/main.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="2d09febd-63fc-43e9-8e6a-c00d9263ba28" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +24,7 @@
     <session id="-2094847503">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -139,12 +134,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1540563616831</updated>
-      <workItem from="1540563618059" duration="981000" />
+      <workItem from="1540563618059" duration="1053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="981000" />
+    <option name="totallyTimeSpent" value="1053000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -160,7 +155,7 @@
       <window_info anchor="bottom" id="CMake" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
