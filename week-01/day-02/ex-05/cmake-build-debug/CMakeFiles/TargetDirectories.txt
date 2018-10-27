@@ -1,3 +1,0 @@
-C:/Green Fox Academy/nmarton818/week-01/day-02/ex-05/cmake-build-debug/CMakeFiles/ex_05.dir
-C:/Green Fox Academy/nmarton818/week-01/day-02/ex-05/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Green Fox Academy/nmarton818/week-01/day-02/ex-05/cmake-build-debug/CMakeFiles/rebuild_cache.dir
