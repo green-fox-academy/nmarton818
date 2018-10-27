@@ -1,12 +1,34 @@
 #include <iostream>
 
 int main() {
+    //I guess you can code this in a much more elegant way, I was just having fun doing this
+    //for the input of 10 it does this:
+    /*10
+    --------------------
+    |\\      ||      //|
+    | \\     ||     // |
+    |  \\    ||    //  |
+    |   \\   ||   //   |
+    |    \\  ||  //    |
+    |     \\ || //     |
+    |      \\||//      |
+    |       \||/       |
+    |------------------|
+    |------------------|
+    |       /||\       |
+    |      //||\\      |
+    |     // || \\     |
+    |    //  ||  \\    |
+    |   //   ||   \\   |
+    |  //    ||    \\  |
+    | //     ||     \\ |
+    |//      ||      \\|
+    --------------------
+    */
     int number;
     std::cout << "Gimme a number!" << std::endl;
     std::cin >> number;
 
-
-    //I guess you can code this in a much more elegant way, I was just having fun doing this
     for(int row1 = 0; row1 < number *2; row1++){
         int row;
         if(row1 >= number)
