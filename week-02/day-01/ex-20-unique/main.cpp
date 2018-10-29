@@ -1,21 +1,13 @@
 #include <iostream>
-
-void printArray(int array[], int size){
-    for(int i = 0; i < size; i++){
-        std::cout << array[i] << ' ';
-    }
 }
-a = 
 
-int unique(int numbers[], int size){
-    int temp;
-    bool unique = false;
+
+int* unique(int numbers[], int size){
+    int* uniques;
+
     for(int i = 0; i < size; i++){
-        for(int j = i; j < size; j++){
-            if(numbers[i] == numbers[j])
-        }
-    }
 
+    }
 }
 
 int main() {
@@ -25,7 +17,11 @@ int main() {
 
     //  Example
     int numbers[] = {1, 11, 34, 11, 52, 61, 1, 34};
-    std::cout << (unique(numbers,sizeof(numbers)/sizeof(numbers[0]))) << std::endl;
+    int uniqueNums[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
+    int uniques;
+    unique(numbers, 8);
+
+    //std::cout << (unique(numbers,sizeof(numbers)/sizeof(numbers[0]))) << std::endl;
     //  should print: `[1, 11, 34, 52, 61]`
     return 0;
 }
