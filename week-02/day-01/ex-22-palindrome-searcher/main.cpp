@@ -30,26 +30,19 @@ std::vector<std::string> palindromes(const std::string &searchThis){
     std::vector<std::string> theseArePalis;
     std::string temp;
     int size = searchThis.length();
-    //if it's shorter than 3 characters we are just wasting our time
+
     if(size >= 3) {
-        //we check every possible string which is longer than 3 characters
-        // and less than or equal to the whole string in which we are looking for the palindromes
         for (unsigned currSize = 3; currSize <= size; currSize++){
-            //std::cout << currSize << ":    ";
             for(unsigned currPos = 0; currPos <= size - currSize; currPos++){
                 temp.assign(searchThis, currPos, currSize);
-                //std::cout << temp << " | ";
                 if(isPalindrome(temp) && std::find(theseArePalis.begin(), theseArePalis.end(), temp) == theseArePalis.end()){
                     theseArePalis.push_back(temp);
-                    //std::cout << temp << std::endl;
                 }
             }
-            //std::cout << std::endl;
         }
     }
     else{
         std::cout << "Too short string, cannot do anything with it!" << std::endl;
-
     }
     return theseArePalis;
 }
