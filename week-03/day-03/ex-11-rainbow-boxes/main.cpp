@@ -1,6 +1,40 @@
 #include <iostream>
 #include <SDL.h>
 
+enum Color{
+    RED,
+    GREEN,
+    BLUE
+};
+
+enum Operation{
+    INCREMENT,
+    DECREMENT
+};
+void drawSquares(int size, int colors[]);
+
+void drawRainbowSquares(int colors[], enum Color color, enum Operation operation, int& size){
+    int change = 4;
+    switch(operation){
+        case INCREMENT: {
+            while (colors[color] < 220 && size > 4) {
+                drawSquares(size, colors);
+                colors[color] += change;
+                size--;
+            }
+            break;
+        }
+        case DECREMENT: {
+            while (colors[color] > 0 && size > 4) {
+                drawSquares(size, colors);
+                colors[color] -= change;
+                size--;
+            }
+            break;
+        }
+    }
+}
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -20,14 +54,14 @@ SDL_Window* gWindow = nullptr;
 //The window renderer
 SDL_Renderer* gRenderer = nullptr;
 
-void drawSquares(int size, const SDL_Color& color)
+void drawSquares(int size, int colors[])
 {
     // Create a square drawing function that takes 2 parameters:
     // The square size, and the fill color,
     // and draws a square of that size and color to the center of the canvas.
     // Create a loop that fills the canvas with rainbow colored squares.
     //choose color
-    SDL_SetRenderDrawColor(gRenderer, color.r, color.g, color.b, color.a);
+    SDL_SetRenderDrawColor(gRenderer, colors[RED], colors[GREEN], colors[BLUE], 255);
     //create a rectangle
     SDL_Rect fillRect = { (SCREEN_WIDTH/2) - (size/2), (SCREEN_HEIGHT/2) - (size/2), size, size};
     //draw rectangle
@@ -106,22 +140,33 @@ int main( int argc, char* args[] )
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
+
+        int colorArray[3] = {0, 0, 0};
         int size = 400;
-        SDL_Color c = {0, 0, 0, 255};
 
-        while (size > 4){
-            if(c.g < 200)
-                c.g+=5;
-            else if(c.r < 200) {
-                c.r += 5;
-            }
-            else if(c.b < 200)
-                c.b+=5;
+        //1 3 2 6 4 5 7
+        //0inc 1inc 2dec 3inc 4dec 5inc 6inc
+        //red green red blue green red green
+        //  0    1   0   2    1    0   2
+        //  0    0   1   0    0    0   1
 
-            size -= 2;
-            drawSquares(size, c);
-        }
-        //drawSquares(size, c);
+        drawRainbowSquares(colorArray, RED, INCREMENT, size);
+        drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+        drawRainbowSquares(colorArray, RED, DECREMENT, size);
+        drawRainbowSquares(colorArray, BLUE, INCREMENT, size);
+        drawRainbowSquares(colorArray, GREEN, DECREMENT, size);
+        drawRainbowSquares(colorArray, RED, INCREMENT, size);
+        drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+
+
+
+
+
+
+
+
+
+
 
         //Update screen
         SDL_RenderPresent(gRenderer);
