@@ -1,5 +1,9 @@
 #include <iostream>
 #include <SDL.h>
+#include <time.h>
+#include <chrono>
+#include <SDL_log.h>
+#include <math.h>
 
 enum Color{
     RED,
@@ -14,20 +18,26 @@ enum Operation{
 void drawSquares(int size, int colors[]);
 
 void drawRainbowSquares(int colors[], enum Color color, enum Operation operation, int& size){
-    int change = 4;
+    int change = 20;
+    int c = time(NULL) % 20;
+    colors[RED] = abs(colors[RED]);
+    colors[GREEN] = abs(colors[GREEN]);
+    colors[BLUE] = abs(colors[BLUE]);
+    SDL_Log("r: %d g: %d b: %d    c: %d", colors[RED], colors[GREEN], colors[BLUE], c);
     switch(operation){
         case INCREMENT: {
-            while (colors[color] < 220 && size > 4) {
+
+            while (colors[color] < 230 && size > 4) {
                 drawSquares(size, colors);
-                colors[color] += change;
+                colors[color] = colors[color] + change - c;
                 size--;
             }
             break;
         }
         case DECREMENT: {
-            while (colors[color] > 0 && size > 4) {
+            while (colors[color] > 0 && size > 4 && colors[color] <= 250) {
                 drawSquares(size, colors);
-                colors[color] -= change;
+                colors[color] = colors[color] - change + c;
                 size--;
             }
             break;
@@ -36,8 +46,8 @@ void drawRainbowSquares(int colors[], enum Color color, enum Operation operation
 }
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 710;
+const int SCREEN_HEIGHT = 710;
 
 //Draws geometry on the canvas
 void draw();
@@ -112,6 +122,8 @@ void close()
 
 int main( int argc, char* args[] )
 {
+
+
     //Start up SDL and create window
     if( !init() )
     {
@@ -141,8 +153,9 @@ int main( int argc, char* args[] )
         SDL_RenderClear(gRenderer);
 
 
+
         int colorArray[3] = {0, 0, 0};
-        int size = 400;
+        int size = 600;
 
         //1 3 2 6 4 5 7
         //0inc 1inc 2dec 3inc 4dec 5inc 6inc
@@ -150,13 +163,26 @@ int main( int argc, char* args[] )
         //  0    1   0   2    1    0   2
         //  0    0   1   0    0    0   1
 
-        drawRainbowSquares(colorArray, RED, INCREMENT, size);
-        drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
-        drawRainbowSquares(colorArray, RED, DECREMENT, size);
-        drawRainbowSquares(colorArray, BLUE, INCREMENT, size);
-        drawRainbowSquares(colorArray, GREEN, DECREMENT, size);
-        drawRainbowSquares(colorArray, RED, INCREMENT, size);
-        drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+        //for(long int k = 0; k < 100; k++) {
+        //for (long int j = 0; j < 10000; j++) {
+            drawRainbowSquares(colorArray, RED, INCREMENT, size);
+            drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+            drawRainbowSquares(colorArray, RED, DECREMENT, size);
+            drawRainbowSquares(colorArray, BLUE, INCREMENT, size);
+            drawRainbowSquares(colorArray, GREEN, DECREMENT, size);
+            drawRainbowSquares(colorArray, RED, INCREMENT, size);
+            drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+
+            drawRainbowSquares(colorArray, GREEN, DECREMENT, size);
+            drawRainbowSquares(colorArray, RED, DECREMENT, size);
+            drawRainbowSquares(colorArray, GREEN, INCREMENT, size);
+            drawRainbowSquares(colorArray, BLUE, DECREMENT, size);
+            drawRainbowSquares(colorArray, RED, INCREMENT, size);
+            drawRainbowSquares(colorArray, GREEN, DECREMENT, size);
+            drawRainbowSquares(colorArray, RED, DECREMENT, size);
+
+
+
 
 
 
@@ -171,7 +197,6 @@ int main( int argc, char* args[] )
         //Update screen
         SDL_RenderPresent(gRenderer);
     }
-
     //Free resources and close SDL
     close();
 
