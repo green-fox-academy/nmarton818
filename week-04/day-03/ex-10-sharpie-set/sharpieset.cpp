@@ -28,11 +28,11 @@ void SharpieSet::countUsable() {
 
 void SharpieSet::removeTrash() {
     int removed = 0;
-    for(int i = 0; i <= _sharpieSet.size()- removed + 1; i++){
+    for(int i = 0; i < _sharpieSet.size(); i++){
         if(_sharpieSet[i].getInkAmount() <= 0) {
             _sharpieSet.erase(_sharpieSet.begin() + i);
-            removed++;
             i--;
+            removed++;
         }
     }
     std::cout << removed << " sharpies have been removed!" << std::endl;

@@ -29,7 +29,7 @@ int main() {
 
     for(int i = 0; i < 100; i++){
         set.getSharpieSetElement(1).use();
-        //set.getSharpieSetElement(2).use();
+        set.getSharpieSetElement(2).use();
         set.getSharpieSetElement(4).use();
         set.getSharpieSetElement(5).use();
     }
