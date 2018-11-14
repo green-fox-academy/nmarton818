@@ -21,7 +21,7 @@ int main(int argc, char* args[])
     fleet.add(b);
     fleet.add(c);
     fleet.add(d);
-    
+
     std::cout << fleet.toString() << std::endl;
     return 0;
 }
