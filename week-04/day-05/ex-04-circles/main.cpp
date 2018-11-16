@@ -1,9 +1,11 @@
 #include <iostream>
 #include <SDL.h>
+#include <SDL2_gfxPrimitives.h>
+#include <math.h>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 640;
 
 //Draws geometry on the canvas
 void draw();
@@ -21,23 +23,15 @@ SDL_Window* gWindow = nullptr;
 //The window renderer
 SDL_Renderer* gRenderer = nullptr;
 
-void draw(int centX, int centY, int size, int depth)
+void draw(int centX, int centY, int rad, int depth)
 {
-    if(depth < 7){
-    SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
-    SDL_Rect fillRect = { centX-size/2, centY-size/2, size, size};
-    SDL_RenderFillRect( gRenderer, &fillRect );
-    draw(centX+size, centY+size, size/3, depth + 1);
-    draw(centX-size, centY+size, size/3, depth +1);
-    draw(centX+size, centY-size, size/3, depth +1);
-    draw(centX-size, centY-size, size/3, depth +1);
-    draw(centX, centY-size, size/3, depth +1);
-    draw(centX-size, centY, size/3, depth +1);
-    draw(centX+size, centY, size/3, depth +1);
-    draw(centX, centY+size, size/3, depth +1);
-
-
-        //draw(centX, centY, size/2);
+    if(depth < 5) {
+        circleRGBA(gRenderer, centX, centY, rad, 0x00, 0x00, 0x00, 0xFF);
+        //circleRGBA(gRenderer, centX - (rad*cos(30 * 2* 3.14/180)/2), centY+(rad*cos(30 * 2* 3.14/180)/2), rad/2, 0x00, 0x00, 0x00, 0xFF);
+        //circleRGBA(gRenderer, centX, centY, rad, 0x00, 0x00, 0x00, 0xFF);
+        draw(centX, centY-rad/2, rad/2, depth +1);
+        draw(centX - rad/2.309, centY + rad/4, rad/2, depth +1);
+        draw(centX + rad/2.309, centY + rad/4, rad/2, depth +1);
 
     }
 }
@@ -114,7 +108,7 @@ int main( int argc, char* args[] )
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
-        draw(SCREEN_WIDTH/2, SCREEN_WIDTH/2, SCREEN_WIDTH/3, 0);
+        draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, SCREEN_WIDTH/2, 0);
 
         //Update screen
         SDL_RenderPresent(gRenderer);

@@ -2,8 +2,8 @@
 #include <SDL.h>
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 640;
 
 //Draws geometry on the canvas
 void draw();
@@ -23,21 +23,18 @@ SDL_Renderer* gRenderer = nullptr;
 
 void draw(int centX, int centY, int size, int depth)
 {
-    if(depth < 7){
-    SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
-    SDL_Rect fillRect = { centX-size/2, centY-size/2, size, size};
-    SDL_RenderFillRect( gRenderer, &fillRect );
-    draw(centX+size, centY+size, size/3, depth + 1);
-    draw(centX-size, centY+size, size/3, depth +1);
-    draw(centX+size, centY-size, size/3, depth +1);
-    draw(centX-size, centY-size, size/3, depth +1);
-    draw(centX, centY-size, size/3, depth +1);
-    draw(centX-size, centY, size/3, depth +1);
-    draw(centX+size, centY, size/3, depth +1);
-    draw(centX, centY+size, size/3, depth +1);
+    if(depth > 0) {
+        for (int i = 0; i < depth; i++) {
+            SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
+            SDL_Rect fillRect = {centX - size / 2 + i, centY - size / 2 + i, size - 2 * i, size - 2 * i};
+            SDL_RenderDrawRect(gRenderer, &fillRect);
+        }
+        draw(centX - size / 2, centY - size / 2, size/2, depth/2);
+        draw(centX + size / 2, centY - size / 2, size/2, depth/2);
+        draw(centX - size / 2, centY + size / 2, size/2, depth/2);
+        draw(centX + size / 2, centY + size / 2, size/2, depth/2);
 
 
-        //draw(centX, centY, size/2);
 
     }
 }
@@ -114,7 +111,7 @@ int main( int argc, char* args[] )
         SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
         SDL_RenderClear(gRenderer);
 
-        draw(SCREEN_WIDTH/2, SCREEN_WIDTH/2, SCREEN_WIDTH/3, 0);
+        draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 300, 16);
 
         //Update screen
         SDL_RenderPresent(gRenderer);
