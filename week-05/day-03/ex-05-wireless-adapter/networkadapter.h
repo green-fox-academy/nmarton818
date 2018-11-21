@@ -1,0 +1,14 @@
+//
+// Created by Nagy Márton on 2018-11-21.
+//
+
+#ifndef EX_05_WIRELESS_ADAPTER_NETWORKADAPTER_H
+#define EX_05_WIRELESS_ADAPTER_NETWORKADAPTER_H
+
+
+class networkadapter {
+
+};
+
+
+#endif //EX_05_WIRELESS_ADAPTER_NETWORKADAPTER_H
