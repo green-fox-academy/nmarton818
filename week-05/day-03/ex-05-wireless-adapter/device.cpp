@@ -1,5 +1,7 @@
-//
-// Created by Nagy Márton on 2018-11-21.
-//
-
 #include "device.h"
+
+Device::Device(int ID) : _ID(ID){};
+
+int Device::getID() const {
+    return _ID;
+}

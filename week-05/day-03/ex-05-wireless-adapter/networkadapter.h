@@ -1,13 +1,13 @@
-//
-// Created by Nagy Márton on 2018-11-21.
-//
-
 #ifndef EX_05_WIRELESS_ADAPTER_NETWORKADAPTER_H
 #define EX_05_WIRELESS_ADAPTER_NETWORKADAPTER_H
 
+#include "networkdevice.h"
+#include "usbdevice.h"
 
-class networkadapter {
-
+class NetworkAdapter : public USBDevice, public NetworkDevice {
+public:
+    NetworkAdapter(int ID, int bandWidth, int usbType);
+    void info() const;
 };
 
 

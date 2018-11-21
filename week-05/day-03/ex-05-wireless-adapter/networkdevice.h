@@ -1,13 +1,13 @@
-//
-// Created by Nagy Márton on 2018-11-21.
-//
-
 #ifndef EX_05_WIRELESS_ADAPTER_NETWORKDEVICE_H
 #define EX_05_WIRELESS_ADAPTER_NETWORKDEVICE_H
 
+#include "device.h"
 
-class networkdevice {
-
+class NetworkDevice : virtual public Device {
+protected:
+    int _bandWidth;
+public:
+    NetworkDevice(int ID, int bandWidth);
 };
 
 

@@ -1,5 +1,5 @@
-//
-// Created by Nagy Márton on 2018-11-21.
-//
-
 #include "usbdevice.h"
+#include "device.h"
+
+USBDevice::USBDevice(int ID, int usbType) : Device(ID), _usbType(usbType){}
+

@@ -1,13 +1,13 @@
-//
-// Created by Nagy Márton on 2018-11-21.
-//
-
 #ifndef EX_05_WIRELESS_ADAPTER_DEVICE_H
 #define EX_05_WIRELESS_ADAPTER_DEVICE_H
 
 
-class device {
-
+class Device {
+protected:
+    int _ID;
+public:
+    explicit Device(int ID);
+    virtual int getID() const;
 };
 
 
