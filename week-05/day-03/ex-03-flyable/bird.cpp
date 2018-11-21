@@ -17,6 +17,6 @@ void Bird::land() {
     sleep();
 }
 
-void Bird::sleep() {
+void Bird::sleep() const{
     std::cout << "And after a tiring flight, the little bird is finally at rest! ZZZZ" << std::endl;
 }

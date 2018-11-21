@@ -10,7 +10,7 @@ public:
     void takeOff();
     void fly();
     void land();
-    void sleep();
+    void sleep() const;
 };
 
 
