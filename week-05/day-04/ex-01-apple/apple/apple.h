@@ -1,8 +1,12 @@
-//
-// Created by Nagy Márton on 2018-11-22.
-//
+//apple.h
+#ifndef APPLES_APPLE_H
+#define APPLES_APPLE_H
 
-#ifndef EX_01_APPLE_APPLE_H
-#define EX_01_APPLE_APPLE_H
+#include <string>
+#include <vector>
 
-#endif //EX_01_APPLE_APPLE_H
+std::string getApple();
+
+int sum(std::vector<int> numbers);
+
+#endif //APPLES_APPLE_H
