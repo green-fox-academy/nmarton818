@@ -13,7 +13,10 @@ char* upperCaseString(char* string){
 }
 
 int equalStrings(char* first, char* second){
-    return strcmp(upperCaseString(first),upperCaseString(second));
+    if(!strcmp(upperCaseString(first),upperCaseString(second)))
+        return 1;
+    else
+        return 0;
 }
 
 int main() {
@@ -21,14 +24,14 @@ int main() {
     // Create a function which takes two strings as parameters and
     // returns 1 if the two strings are the same and 0 otherwise
     // Try to erase small and uppercase sensitivity.
-    char string[100] = "this text is  totally written in lowercase!";
-    char first[100] = "CICA KUTYA BOCI MEDVE";
-    char second[100] = "cIca kuTyA Boci meDve";
-    printf("%s\n", string);
-    printf("%s\n", upperCaseString(string));
+    char first[100];
+    char second[100];
+    printf("Gimme a string!\n");
+    gets(first);
+    printf("Gimme another string!\n");
+    gets(second);
 
-    printf("%s\n%s\n", first, second);
-    if(equalStrings(first, second) == 0)
+    if(equalStrings(first, second))
         printf("They're equal!\n");
     else
         printf("They're not equal!\n");
