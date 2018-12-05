@@ -9,7 +9,7 @@ int isSubstring(char* first, char* second){
         longer = second;
     } else if(strlen(first) == strlen(second))
         return -1;
-    
+
     if(strstr(longer, shorter) != NULL)
         return 1;
     else
