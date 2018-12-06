@@ -50,7 +50,7 @@ int main() {
 
     pirates[5].gold_count = 500;
     pirates[5].has_wooden_leg = 1;
-    strcpy(pirates[5].name, "Hook");
+    strcpy(pirates[5].name, "Captain Hook");
 
     pirates[6].gold_count = 600;
     pirates[6].has_wooden_leg = 0;
