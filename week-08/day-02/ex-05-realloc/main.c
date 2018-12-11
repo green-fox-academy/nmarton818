@@ -11,7 +11,7 @@ int main() {
     scanf("%d", &x);
     int* array = (int*) malloc(x * sizeof(int));
     int sum = 0;
-    
+
     for(int i = 0; i < x; i++){
         printf("Gimme a number!\n");
         scanf("%d", &array[i]);
