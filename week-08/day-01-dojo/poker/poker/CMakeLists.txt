@@ -1,0 +1,1 @@
+add_library(poker poker.h poker.cpp player.cpp player.h)
