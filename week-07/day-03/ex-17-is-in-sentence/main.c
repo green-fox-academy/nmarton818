@@ -31,11 +31,12 @@ int main() {
     // It should return 1 if the given sentence contains the given word
     // and 0 otherwise
     // Try to erase small and uppercase sensitivity.
+
     char word[20] = "apple";
     char sentence[100] = "An appLe a day keeps the doctor away.";
 
     // the output should be: 1
-    printf("%d",isInSentence(sentence, word));
+    printf("%d\n", isInSentence(sentence, word));
 
     return 0;
 }

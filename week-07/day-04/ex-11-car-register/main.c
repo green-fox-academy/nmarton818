@@ -65,7 +65,7 @@ int main() {
     }
     cars[4].transmission = semi_automatic;
     cars[4].year = 1990;
-    
+
     printf("%d older than %d years\n", get_older_cars_than(cars, 10, 20), 20);
     printf("%d older than %d years\n", get_older_cars_than(cars, 10, 25), 25);
     printf("%d has dual-clutch transmission\n", get_transmission_count(cars, 10, dual_clutch));
