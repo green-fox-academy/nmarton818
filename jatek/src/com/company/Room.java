@@ -22,7 +22,7 @@ public class Room {
         System.out.println("You are in the " + this.name + ". In this room there are these things: ");
         for(int i = 0; i < objects.size(); i++){
             if(objects.elementAt(i).isVisible()){
-                objects.elementAt(i).inspectObject();
+                    objects.elementAt(i).inspectObject();
             }
         }
         for(HashMap.Entry<String, Exit> entry : exits.entrySet()){
@@ -33,15 +33,22 @@ public class Room {
     }
     public boolean isExitDirection(String direction){
         Exit exit = exits.get(direction);
-        if(exit.isOpen && exit.visible)
-            return true;
-        else if(!(exit.isOpen))
-            System.out.println("The " + exit.name + " is locked");
+        if(exit != null) {
+            if (exit.isOpen && exit.visible)
+                return true;
 
-        else if(!(exit.visible))
+            else if (!(exit.isOpen))
+                System.out.println("The " + exit.name + " is locked");
+
+            else if (!(exit.visible))
+                System.out.println("I cannot see an exit that way");
+                return false;
+        } else{
             System.out.println("I cannot see an exit that way");
-        return false;
+            return false;
+        }
     }
+
 
     public Object findObject(String object){
         for (int i = 0; i < objects.size(); i++) {
@@ -60,7 +67,14 @@ public class Room {
         }
         return null;
     }
-
+    public Container findContainer(Object object) {
+        for (int i = 0; i < objects.size(); i++) {
+            if (objects.elementAt(i) instanceof Container) {
+                return ((Container) objects.elementAt(i)).contains(object, (Container) objects.elementAt(i));
+            }
+        }
+        return null;
+    }
     public void addObject(Object object){
         objects.add(object);
     }
@@ -69,6 +83,6 @@ public class Room {
     }
 
     public void removeObject(Object object){
-      objects.remove(object);
+      objects.removeElement(object);
     }
 }

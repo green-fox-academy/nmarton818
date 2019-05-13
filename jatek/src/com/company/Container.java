@@ -20,7 +20,21 @@ public class Container extends Furniture {
     }
 
     public void removeObject(Object object) {
-        this.objects.remove(object);
+        this.objects.removeElement(object);
+    }
+
+    public Container contains(Object object, Container iter) {
+        Container container = null;
+        if (iter.objects.contains(object))
+            container = iter;
+        else {
+            for (int i = 0; i < iter.objects.size(); i++) {
+                if (iter.objects.elementAt(i) instanceof Container) {
+                    container = contains(object, (Container) iter.objects.elementAt(i));
+                }
+            }
+        }
+        return container;
     }
 
     public Object findItem(String item){
@@ -36,19 +50,23 @@ public class Container extends Furniture {
     }
 
     public void inspectObject() {
-        if (objects.size() != 0 && isOpened) {
+        if(!this.isOpened){
+            System.out.println(getName());
+        }
+        else if (objects.size() != 0 && isOpened) {
             System.out.print("Inside this " + this.name + " there are these things: ");
             for (int i = 0; i < objects.size(); i++) {
-                System.out.print(objects.elementAt(i).name);
+                //System.out.println(objects.elementAt(i).name);
                 objects.elementAt(i).reveal();
+                if (objects.elementAt(i) instanceof Container) {
+                    objects.elementAt(i).inspectObject();
+                }
+                else{
+                    System.out.println(objects.elementAt(i).name);
+                }
             }
-
-            System.out.println("");
         } else if (objects.size() == 0 && isOpened) {
             System.out.println("This " + this.name + " is empty");
-        } else if(!isOpened){
-            System.out.println("A " + this.name);
         }
-
     }
 }

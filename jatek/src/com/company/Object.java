@@ -24,7 +24,7 @@ public class Object {
         this.visible = true;
     }
     public void inspectObject(){
-        System.out.println("A pretty " + this.name);
+        System.out.println(this.name);
     }
 
 }

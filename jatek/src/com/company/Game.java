@@ -42,7 +42,6 @@ public class Game {
         if(command.equals("inspect")){
             if(tokenizedInstruction.size() == 1 || tokenizedInstruction.elementAt(1).equals("room")) {
                 house.elementAt(playerLocation).showRoom();
-                return true;
             }
             else if(objectArr[0] != null && objectArr[1] == null) {
                 if (objectArr[0] instanceof Container) {
@@ -56,9 +55,10 @@ public class Game {
             }
 
 
-        } else if(command.equals("north") || command.equals("east") || command.equals("south") || command.equals("west") && objectArr[0] == null && objectArr[1] == null){
+        } else if(command.equals("north") || command.equals("east") || command.equals("south") || command.equals("west") && tokenizedInstruction.size() == 1){
                 if(house.elementAt(playerLocation).isExitDirection(command)){
                     player.move(command);
+                    playerLocation = player.getLocation();
                     System.out.println("You entered this room: "+ house.elementAt(playerLocation).getName());
                 }
         }
@@ -66,11 +66,14 @@ public class Game {
         else if(command.equals("carry") && objectArr[0] != null && objectArr[1] == null) {
             if (objectArr[0] instanceof Carriable) {
                 player.carry((Carriable) objectArr[0]);
+                house.elementAt(playerLocation).findContainer(objectArr[0]).removeObject(objectArr[0]);
 
             } else if (!(objectArr[0] instanceof Carriable))
                 System.out.println("You cannot carry this item");
         } else if(command.equals("inventory")){
             player.listInventory();
+        } else{
+            System.out.println("Invalid command!");
         }
         return false;
 
