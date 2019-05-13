@@ -18,6 +18,19 @@ public class Player {
         return this.location;
     }
 
+    public boolean isInInventory(Carriable item){
+        return inventory.contains(item);
+    }
+
+    public Object getItem(String item){
+        for(int i = 0; i < inventory.size(); i++){
+            if(inventory.elementAt(i).name.equals(item)) {
+                return inventory.elementAt(i);
+            }
+        }
+        return null;
+    }
+
     public void listInventory(){
         if(inventory.size() != 0){
         System.out.print("You have these items in your inventory: ");
@@ -44,7 +57,10 @@ public class Player {
         System.out.println("You picked up this item: "+ item.name);
     }
 
-    public void drop(Object object){}
+    public void drop(Carriable item){
+        inventory.removeElement(item);
+        System.out.println("You dropped this item: " + item.name);
+    }
     public void open(Object object){}
     public void pull(Object object){}
     public void crush(Object object){}
