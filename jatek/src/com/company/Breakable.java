@@ -11,4 +11,7 @@ public class Breakable extends Exit {
         this.isBroken = true;
         this.isOpen = true;
     }
+    public boolean broken(){
+        return this.isBroken;
+    }
 }

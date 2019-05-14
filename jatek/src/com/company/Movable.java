@@ -11,4 +11,11 @@ public class Movable extends Container {
     public void move(){
         this.isMoved = !isMoved;
     }
+    public boolean ismoved(){
+        return this.isMoved;
+    }
+
+    public String getHides() {
+        return this.hides;
+    }
 }

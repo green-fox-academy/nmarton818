@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -18,7 +17,7 @@ public class Game {
         return (objArr[0] != null && objArr[1] == null);
     }
 
-    public boolean hasTwoValidArgument(Object[] objArr){
+    public boolean hasTwoValidArguments(Object[] objArr){
         return (objArr[0] != null && objArr[1] != null);
     }
 
@@ -120,14 +119,15 @@ public class Game {
             player.listInventory();
         }
 
-        else if(command.equals("drop") && hasOneValidArgument(objectArr)){
+        else if(command.equals("drop") && (hasOneValidArgument(objectArr))){
             if(player.isInInventory((Carriable) objectArr[0])){
                 player.drop((Carriable) objectArr[0]);
                 currentRoom.addObject(objectArr[0]);
             } else {
                 System.out.println("You don't have this item with you");
             }
-        } else if(command.equals("open") || (command.equals("close")) && hasTwoValidArgument(objectArr)){
+
+        } else if((command.equals("open") || (command.equals("close"))) && hasTwoValidArguments(objectArr)){
             objectArr = swapObjects(objectArr);
             if((objectArr[1] instanceof Misc) && player.isInInventory((Carriable) objectArr[1]) && (objectArr[0] instanceof Exit)){
                 if(((Misc) objectArr[1]).getKeyNumber() == ((Exit)(objectArr[0])).getKeyNumber()) {
@@ -140,12 +140,46 @@ public class Game {
                     }
                 }
                 else{
-                    System.out.println("This key does not open this " + objectArr[0].getName());
+                    System.out.println("This key does not " + command + " this " + objectArr[0].getName());
                 }
             } else if(objectArr[0] instanceof Exit && !(objectArr[1] instanceof Misc)){
                 System.out.println("You cannot " + command + " the " + objectArr[0].getName() + " with a " + objectArr[1].getName());
-            } else
+            } else if(!(player.isInInventory((Carriable) objectArr[1]))){
+                System.out.println("You don't have this item with you");
+            }
+            else
                 System.out.println("A " +  objectArr[0].getName() + " cannot be opened. Not even with a " +  objectArr[1].getName());
+        }
+        else if(command.equals("move") && hasOneValidArgument(objectArr)){
+            if(objectArr[0] instanceof Movable){
+                ((Movable)(objectArr[0])).move();
+                if(((Movable)(objectArr[0])).ismoved()){
+                    currentRoom.findObject(((Movable)(objectArr[0])).getHides()).reveal();
+                    System.out.println("You moved the " + objectArr[0].getName() + ". It might have revealed something");
+                }else {
+                    currentRoom.findObject(((Movable) (objectArr[0])).getHides()).hide();
+                    System.out.println("You moved the " + objectArr[0].getName() + " to it's original place. It might have hidden something");
+                }
+            }
+        }
+        else if(command.equals("break") && (hasTwoValidArguments(objectArr))){
+            objectArr = swapObjects(objectArr);
+            if((objectArr[1] instanceof Weapon) && player.isInInventory((Carriable) objectArr[1]) && (objectArr[0] instanceof Breakable)){
+                if(((Breakable)(objectArr[0])).broken()){
+                    System.out.println("This " + objectArr[0].getName() + " is already broken");
+                }else{
+                    ((Breakable)(objectArr[0])).breakExit();
+                    System.out.println("You have broken the " + objectArr[0].getName());
+                }
+            }else if(!(player.isInInventory((Carriable) objectArr[1]))){
+                System.out.println("You don't have this item with you");
+            }else if(!(objectArr[0] instanceof Weapon) && (objectArr[1] instanceof Breakable)){
+                System.out.println("You can't break this exit with this item");
+            }else if(!(objectArr[1] instanceof Breakable)){
+                System.out.println("You can't break that");
+            }
+            else
+                System.out.println("You can't break " + objectArr[0].getName() + " with " + objectArr[1].getName());
         }
         else{
             System.out.println("Invalid command!");

@@ -62,7 +62,7 @@ public class Room {
             }
         }
         for (HashMap.Entry<String, Exit> entry : exits.entrySet()) {
-            if (entry.getValue().getName().equals(object) && entry.getValue().isVisible())
+            if (entry.getValue().getName().equals(object) /*&& entry.getValue().isVisible()*/)
                 return entry.getValue();
         }
         return null;
