@@ -50,13 +50,12 @@ public class Container extends Furniture {
     }
 
     public void inspectObject() {
-        if(!this.isOpened){
+        if(!(this.isOpened)){
             System.out.println(getName());
         }
-        else if (objects.size() != 0 && isOpened) {
-            System.out.print("Inside this " + this.name + " there are these things: ");
+        else if (objects.size() != 0) {
+            System.out.print("There is a " + this.name + ". Inside this " + this.name + " there are these things: ");
             for (int i = 0; i < objects.size(); i++) {
-                //System.out.println(objects.elementAt(i).name);
                 objects.elementAt(i).reveal();
                 if (objects.elementAt(i) instanceof Container) {
                     objects.elementAt(i).inspectObject();
@@ -65,7 +64,7 @@ public class Container extends Furniture {
                     System.out.println(objects.elementAt(i).name);
                 }
             }
-        } else if (objects.size() == 0 && isOpened) {
+        } else {
             System.out.println("This " + this.name + " is empty");
         }
     }

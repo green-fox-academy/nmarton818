@@ -61,8 +61,4 @@ public class Player {
         inventory.removeElement(item);
         System.out.println("You dropped the " + item.name);
     }
-    public void open(Object object){}
-    public void pull(Object object){}
-    public void crush(Object object){}
-
 }

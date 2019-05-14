@@ -6,11 +6,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Game game = new Game("Marci");
+        System.out.println("Please give me your name!");
         Scanner scanner = new Scanner(System.in);
-        String command;
+        String instruction;
+        instruction = scanner.nextLine();
+        Game game = new Game(instruction);
+        game.welcomeText();
         do{
-            command = scanner.nextLine();
-        }while (!game.playerInstruction(command));
+            instruction = scanner.nextLine();
+        }while (!game.playerInstruction(instruction));
     }
 }

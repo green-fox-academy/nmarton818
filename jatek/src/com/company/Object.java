@@ -9,7 +9,6 @@ public class Object {
     public Object(String name){
         this.visible = true;
         this.name = name;
-        System.out.println(this.name + " is created which is a " + this.getClass().getName());
     }
     public String getName(){
         return name;

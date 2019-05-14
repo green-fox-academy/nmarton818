@@ -27,7 +27,7 @@ public class Room {
         }
         for(HashMap.Entry<String, Exit> entry : exits.entrySet()){
             if(entry.getValue().isVisible()){
-                System.out.println("There is a " + entry.getValue().getName() + " " + entry.getKey());
+                System.out.println("There is a " + entry.getValue().getName() + " in the " + entry.getKey() + " side of the room");
             }
         }
     }
@@ -62,7 +62,7 @@ public class Room {
             }
         }
         for (HashMap.Entry<String, Exit> entry : exits.entrySet()) {
-            if (entry.getValue().getName().equals(object) /*&& entry.getValue().isVisible()*/)
+            if (entry.getValue().getName().equals(object))
                 return entry.getValue();
         }
         return null;

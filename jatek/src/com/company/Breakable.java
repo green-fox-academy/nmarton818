@@ -14,4 +14,12 @@ public class Breakable extends Exit {
     public boolean broken(){
         return this.isBroken;
     }
+    public void inspectObject(){
+        if(isOpen)
+            System.out.println("This " + this.name + " is open.");
+        else
+            System.out.println("This " + this.name + " seems locked.");
+        if(isBroken)
+            System.out.println("It's broken");
+    }
 }
