@@ -54,12 +54,12 @@ public class Player {
 
     public void carry(Carriable item){
         inventory.add(item);
-        System.out.println("You picked up this item: "+ item.name);
+        System.out.println("You picked up the " + item.name);
     }
 
     public void drop(Carriable item){
         inventory.removeElement(item);
-        System.out.println("You dropped this item: " + item.name);
+        System.out.println("You dropped the " + item.name);
     }
     public void open(Object object){}
     public void pull(Object object){}

@@ -6,4 +6,7 @@ public class Misc extends Carriable {
         super(name);
         this.keyNumber = keyNumber;
     }
+    public int getKeyNumber() {
+        return keyNumber;
+    }
 }

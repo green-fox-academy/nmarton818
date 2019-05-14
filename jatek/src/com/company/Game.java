@@ -58,9 +58,20 @@ public class Game {
             return false;
     }
 
+    public Object[] swapObjects(Object[] objArr){
+        Object temp;
+        if(objArr[0] instanceof Carriable && objArr[1] instanceof Exit){
+            temp = objArr[0];
+            objArr[0] = objArr[1];
+            objArr[1] = temp;
+        }
+        return objArr;
+    }
+
     public boolean playerInstruction(String instruction){
         int playerLocation = player.getLocation();
         Vector<String> tokenizedInstruction = tokenizeInstruction(instruction);
+        Room currentRoom = house.elementAt(playerLocation);
 
         if(!validInstructionLenght(tokenizedInstruction)) {
             return false;
@@ -71,7 +82,7 @@ public class Game {
 
         if(command.equals("inspect")){
             if(tokenizedInstruction.size() == 1 || tokenizedInstruction.elementAt(1).equals("room")) {
-                house.elementAt(playerLocation).showRoom();
+                currentRoom.showRoom();
             }
             else if(hasOneValidArgument(objectArr)) {
                 if (objectArr[0] instanceof Container) {
@@ -86,20 +97,21 @@ public class Game {
 
 
         } else if(command.equals("north") || command.equals("east") || command.equals("south") || command.equals("west") && tokenizedInstruction.size() == 1){
-                if(house.elementAt(playerLocation).isExitDirection(command)){
+                if(currentRoom.isExitDirection(command)){
                     player.move(command);
                     playerLocation = player.getLocation();
-                    System.out.println("You entered this room: " + house.elementAt(playerLocation).getName());
+                    currentRoom = house.elementAt(playerLocation);
+                    System.out.println("You entered into the " + currentRoom.getName());
                 }
         }
 
         else if(command.equals("carry") && hasOneValidArgument(objectArr)) {
             if (objectArr[0] instanceof Carriable) {
                 player.carry((Carriable) objectArr[0]);
-                if(house.elementAt(playerLocation).findContainer(objectArr[0]) != null)
-                    house.elementAt(playerLocation).findContainer(objectArr[0]).removeObject(objectArr[0]);
+                if(currentRoom.findContainer(objectArr[0]) != null)
+                    currentRoom.findContainer(objectArr[0]).removeObject(objectArr[0]);
                 else
-                    house.elementAt(playerLocation).removeObject(objectArr[0]);
+                    currentRoom.removeObject(objectArr[0]);
             } else if (!(objectArr[0] instanceof Carriable))
                 System.out.println("You cannot carry this item");
 
@@ -111,11 +123,31 @@ public class Game {
         else if(command.equals("drop") && hasOneValidArgument(objectArr)){
             if(player.isInInventory((Carriable) objectArr[0])){
                 player.drop((Carriable) objectArr[0]);
-                house.elementAt(playerLocation).addObject(objectArr[0]);
+                currentRoom.addObject(objectArr[0]);
             } else {
                 System.out.println("You don't have this item with you");
             }
-        } else{
+        } else if(command.equals("open") || (command.equals("close")) && hasTwoValidArgument(objectArr)){
+            objectArr = swapObjects(objectArr);
+            if((objectArr[1] instanceof Misc) && player.isInInventory((Carriable) objectArr[1]) && (objectArr[0] instanceof Exit)){
+                if(((Misc) objectArr[1]).getKeyNumber() == ((Exit)(objectArr[0])).getKeyNumber()) {
+                    if(command.equals("open")){
+                        ((Exit)(objectArr[0])).open();
+                        System.out.println("You opened the " + objectArr[0].getName());
+                    }else {
+                        ((Exit)(objectArr[0])).close();
+                        System.out.println("You closed the " + objectArr[0].getName());
+                    }
+                }
+                else{
+                    System.out.println("This key does not open this " + objectArr[0].getName());
+                }
+            } else if(objectArr[0] instanceof Exit && !(objectArr[1] instanceof Misc)){
+                System.out.println("You cannot " + command + " the " + objectArr[0].getName() + " with a " + objectArr[1].getName());
+            } else
+                System.out.println("A " +  objectArr[0].getName() + " cannot be opened. Not even with a " +  objectArr[1].getName());
+        }
+        else{
             System.out.println("Invalid command!");
         }
         return false;
@@ -136,10 +168,12 @@ public class Game {
         Room livingRoom = new Room("living room", 0);
         Movable cupboard = new Movable("cupboard", "window");
         Container box = new Container("box");
-        Misc key2 = new Misc("key", 2);
-        box.addObject(key2);
+        Misc key1 = new Misc("key", 1);
+        Carriable toy = new Carriable("toy");
+        box.addObject(key1);
         cupboard.addObject(box);
         livingRoom.addObject(cupboard);
+        livingRoom.addObject(toy);
         return livingRoom;
     }
 
